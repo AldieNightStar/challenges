@@ -5,8 +5,11 @@ SIZE  = 15
 SYM   = "*"
 
 SPEC  = True
+RAND  = True
 SPECS = "#$@!*&oPZ#"
 # --------------
+
+from random import randint
 
 
 def symProviderDefault(n):
@@ -32,7 +35,10 @@ def chrisTree(n: int, cnt: int, f_print=print, symProvider=symProviderDefault, n
 			drawsCnt = 1 + (i * 2)
 			drawsArr = []
 			for i in range(drawsCnt):
-				drawsArr.append(symProvider(i))
+				if RAND:
+					drawsArr.append(symProvider(randint(0, drawsCnt)))
+				else:
+					drawsArr.append(symProvider(i))
 			# ---
 			f_print(spaces)
 			f_print("".join(drawsArr))
